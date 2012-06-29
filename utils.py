@@ -32,7 +32,7 @@ def get_page(url):
     return urllib.urlopen(url).read()
 
 def expand_url(url):
-    lines = exec_command( "curl -I -R -s -m 1 '{0}'".format(url), output_as = 'array' )
+    lines = exec_command( "curl -I -R -s -m 3 '{0}'".format(url), output_as = 'array' )
     expanded_url = None
     for line in lines:
         head = "Location: "
@@ -42,7 +42,7 @@ def expand_url(url):
     return expanded_url or url
 
 def expand_urls_in(text):
-    url_re = re.compile(r'http:\/\/[a-zA-Z1-9\.\-\/]{6,15}')
+    url_re = re.compile(r'http:\/\/[a-zA-Z0-9\.\-\/]{6,15}')
     urls = re.findall(url_re, text)
     print("urls: {0}".format(urls))
     if not urls: return text
