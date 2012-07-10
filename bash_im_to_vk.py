@@ -3,7 +3,7 @@
 from bash_org_ru_parser import BashOrgRuParser
 from vk_api import VkontakteApi
 import settings
-MIN_RATING = 6000
+MIN_RATING = 7000
 MAX_COUNT = 3
 
 def post_bash_im_to_vk():

@@ -46,7 +46,11 @@ class BashOrgRuParser():
         if not rating_block: return None
         post_id = int(rating_block['id'].strip('v'))
         post_dict['text'] = text
-        post_dict['rating'] = int(rating_block.string)
+
+        rating = rating_block.string
+        if rating.isdigit(): post_dict['rating'] = int(rating)
+        else: post_dict['rating'] = 0
+
         post_dict['id'] = post_id
 
         if post_id > self.max_id: self.max_id = post_id
@@ -109,7 +113,7 @@ class BashOrgRuPost():
         self.text = self.text.replace("\n", " ").replace(r"\n", "\n")
         self.post_id = post_dict['id']
         self.rating = post_dict['rating']
-        self.url = "http://bash.im/quotes/{0}".format(self.post_id)
+        self.url = "http://bash.im/quote/{0}".format(self.post_id)
         formats = {
             'post_id': self.post_id,
             'rating': self.rating,
